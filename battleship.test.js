@@ -37,3 +37,43 @@ describe('Battleship', () => {
     });
 }
 );
+
+describe('Gameboard', () => {
+    let gameboard;
+    let ship;
+
+    beforeEach(() => {
+        gameboard = new Gameboard();
+        ship = new Battleship(3);
+        ship.position = ['A1', 'A2', 'A3']; // Mock position
+        gameboard.addShip(ship);
+    });
+
+    test('should add a ship to the gameboard', () => {
+        expect(gameboard.ships.length).toBe(1);
+        expect(gameboard.ships[0]).toBe(ship);
+    });
+
+    test('should register a hit on a ship', () => {
+        const result = gameboard.receiveAttack('A1');
+        expect(result).toBe(true); // Hit
+        expect(ship.getHitCount()).toBe(1);
+    });
+
+    test('should register a miss when attacking an empty position', () => {
+        const result = gameboard.receiveAttack('B1');
+        expect(result).toBe(false); // Miss
+    });
+
+    test('should return true when all ships are sunk', () => {
+        ship.hit();
+        ship.hit();
+        ship.hit(); // Sinking the ship
+        expect(gameboard.allShipsSunk()).toBe(true);
+    });
+
+    test('should return false when not all ships are sunk', () => {
+        ship.hit();
+        expect(gameboard.allShipsSunk()).toBe(false);
+    });
+});
