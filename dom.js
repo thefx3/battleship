@@ -1,9 +1,5 @@
 //dom.js
 
-import { Battleship, Player } from './battleship.js';
-
-
-
 function createBoardElement(player, size=10) {
     const board = document.createElement('div');
     board.classList.add('gameboard');
@@ -23,7 +19,6 @@ function createBoardElement(player, size=10) {
             board.appendChild(cell);
         }
     }
-
     return board;
 }
 
