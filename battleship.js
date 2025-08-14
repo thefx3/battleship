@@ -72,4 +72,4 @@ export class Player {
 
 }
 
-module.exports = {Battleship, Gameboard, Player};
+export {Battleship, Gameboard, Player};

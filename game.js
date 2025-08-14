@@ -36,5 +36,5 @@ function playTurn(position) {
     [currentPlayer, otherPlayer] = [otherPlayer, currentPlayer];
 }
 
-export { initGame, playTurn };
+document.addEventListener('DOMContentLoaded', initGame);
 
